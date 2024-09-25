@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
       'title': 'Good Old-Fashioned Pancakes',
       'ingredients': 'Flour, Baking Powder, Sugar, Salt, Milk, Butter, Egg',
       'instructions':
-          '1. Sift flour, baking powder, sugar, and salt together in a large bowl.\n2. Make a well in the center and add milk, melted butter, and egg; mix until smooth.\n3. Heat a lightly oiled griddle or pan over medium-high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake\n4. Cook until bubbles form and the edges are dry, about 2 to 3 minutes. Flip and cook until browned on the other side. Repeat with remaining batter.'
+          '1. Sift flour, baking powder, sugar, and salt together in a large bowl.\n2. Make a well in the center and add milk, melted butter, and egg; mix until smooth.\n3. Heat a lightly oiled griddle or pan over medium-high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake.\n4. Cook until bubbles form and the edges are dry, about 2 to 3 minutes. Flip and cook until browned on the other side. Repeat with remaining batter.'
     },
     {
       'imageAsset': 'VegetableStirFry.jpg',
@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
       'ingredients':
           'Olive Oil, Bell Peppers, Sugar Snap Peas, Carrots, Mushrooms, Broccoli, Baby Corn, Water Chestnuts, Soy Sauce, Garlic Cloves, Brown Sugar, Sesame Oil, Chicken Broth, Cornstarch',
       'instructions':
-          '1. Add 1 tablespoon olive oil over medium-high heat in a wok or large skillet. Add bell pepper, peas, carrots, mushrooms, broccoli, baby corn, and water chestnuts. Sauté 2-3 minutes until veggies are almost tender.\n2. In a small whisk together soy sauce, garlic, brown sugar, sesame oil, chicken broth, and cornstarch.\n3. Pour over veggies and cook until the sauce has thickened. '
+          '1. Add 1 tablespoon olive oil over medium-high heat in a wok or large skillet. Add bell pepper, peas, carrots, mushrooms, broccoli, baby corn, and water chestnuts. Sauté 2-3 minutes until veggies are almost tender.\n2. In a small bowl, whisk together soy sauce, garlic, brown sugar, sesame oil, chicken broth, and cornstarch.\n3. Pour over veggies and cook until the sauce has thickened.'
     },
     {
       'imageAsset': 'SesameChicken.jpg',
@@ -51,32 +51,40 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(247, 37, 133, 1),
       ),
-      body: ListView.builder(
-        itemCount: recipes.length,
-        itemBuilder: (context, index) {
-          return Container(
-            margin: const EdgeInsets.symmetric(
-                horizontal: 16, vertical: 4), // Space between tiles
-            decoration: BoxDecoration(
-              border: Border.all(
-                  color: Colors.black, width: 3), // Solid black border
-
-              borderRadius: BorderRadius.circular(12), // Rounded corners
-            ),
-            child: ListTile(
-              title: Text(recipes[index]['title']!),
-              tileColor: const Color.fromRGBO(249, 189, 255, 1),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailsScreen(recipe: recipes[index]),
+      body: Column(
+        children: [
+          const SizedBox(
+              height: 2), // Add space between the AppBar and the first tile
+          Expanded(
+            child: ListView.builder(
+              itemCount: recipes.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 4), // Space between tiles
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Colors.black, width: 2.5), // Solid black border
+                    borderRadius: BorderRadius.circular(12), // Rounded corners
+                  ),
+                  child: ListTile(
+                    title: Text(recipes[index]['title']!),
+                    tileColor: const Color.fromRGBO(249, 189, 255, 1),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailsScreen(recipe: recipes[index]),
+                        ),
+                      );
+                    },
                   ),
                 );
               },
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }
